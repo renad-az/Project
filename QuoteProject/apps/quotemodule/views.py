@@ -4,7 +4,7 @@ from .models import Quote
 
 def home(request):
     quotes = Quote.objects.all().order_by('-created_at')
-    return render(request, 'quotes/home.html', {'quotes': quotes})
+    return render(request, 'quotesmodule/home.html', {'quotes': quotes})
 
 
 def add_quote(request):
