@@ -2,9 +2,8 @@ from django.shortcuts import render
 from .models import Quote
 
 
-def home(request):
-    quotes = Quote.objects.all().order_by('-created_at')
-    return render(request, 'quotesmodule/home.html', {'quotes': quotes})
+def quote(request):
+    return render(request, 'quotes/quotes.html')
 
 
 def add_quote(request):
