@@ -3,7 +3,7 @@ from .models import Quote
 
 
 def quote(request):
-    return render(request, 'quotemodule/quotes.html')
+    return render(request, 'quotes/quotes.html')
 
 
 def add_quote(request):
