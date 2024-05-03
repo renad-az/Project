@@ -18,7 +18,7 @@ def add_quote(request):
 
 def quote_detail(request, quote_id):
     quote = Quote.objects.get(id=quote_id)
-    return render(request, 'quotemodule/quote_detail.html', {'quote': quote})
+    return render(request, 'quotemodule/quote_search.html', {'quote': quote})
 
 
 def profile(request):
