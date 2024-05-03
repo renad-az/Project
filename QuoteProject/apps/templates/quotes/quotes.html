@@ -5,5 +5,9 @@
   <title>Quotes</title>
 </head>
 <body>
-  <h1> This is the qutes page</h1>
+  {% for q in content %}
+  <h1> {{q.author}}</h1>
+  <h2> {{q.text}}</h2>
+  <h3> {{q.date}}</h3>
+  {% endfor %}
 </body>
