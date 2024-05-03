@@ -3,6 +3,7 @@ from .models import Quote
 
 
 def quote(request):
+    quotes = Quote.objects.all()
     return render(request, 'quotes/quotes.html')
 
 
