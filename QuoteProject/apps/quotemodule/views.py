@@ -18,11 +18,11 @@ def add_quote(request):
 
 def quote_detail(request, quote_id):
     quote = Quote.objects.get(id=quote_id)
-    return render(request, 'quotes/quote_detail.html', {'quote': quote})
+    return render(request, 'quotemodule/quote_detail.html', {'quote': quote})
 
 
 def profile(request):
     # Assuming you have user authentication implemented
     user = request.user
     quotes = Quote.objects.filter(user=user)
-    return render(request, 'quotes/profile.html', {'user': user, 'quotes': quotes})
+    return render(request, 'quotemodule/profile.html', {'user': user, 'quotes': quotes})
