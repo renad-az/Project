@@ -13,7 +13,7 @@ def add_quote(request):
         author = request.POST.get('author')
         Quote.objects.create(text=text, author=author)
         return redirect('home')
-    return render(request, 'quotes/add_quote.html')
+    return render(request, 'quotemodule/add_quote.html')
 
 
 def quote_detail(request, quote_id):
