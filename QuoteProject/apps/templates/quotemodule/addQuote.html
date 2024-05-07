@@ -1,0 +1,13 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Adding a Quote {% endblock %}
+
+{% block content %}
+<h3>Add a Quote</h3>
+<form method="post">
+    {% csrf_token %}
+    {{form}}
+    <br>
+    <button type="submit">Add</button>
+</form>
+{% endblock content %}
