@@ -1,92 +1,20 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Quote Detail</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f2f2f2;
-            margin: 0;
-            padding: 20px;
-        }
+{% extends "layouts/base.html" %}
 
-        h1 {
-            color: #333333;
-        }
+{% block title %} Quote list {% endblock %}
 
-        .quote-container {
-            background-color: #ffffff;
-            border-radius: 5px;
-            padding: 20px;
-            margin-top: 20px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
+{% block content %}
+<h1>Quotes List</h1>
+    {% for q in quotes %}
+        <div class="quote-container" style="text-align: center;">
+            <p class="quote-text" id="quoteText"><a href="{% url 'quote_detail' qId=q.id %}">{{q.Tilte}}</a> </p>
+            <p class="quote-author" id="quoteAuthor">{{q.author}}</p>
+            <p class="quote-text" id="quoteText">{{q.text}}</p>
+        </div>
+     
 
-        .quote-text {
-            font-size: 18px;
-            margin-bottom: 10px;
-        }
+            
+    {%endfor%}
+{% endblock content %}
 
-        .quote-author {
-            font-size: 14px;
-            color: #666666;
-        }
-    </style>
-</head>
-<body>
-    <h1>Quote Detail</h1>
+  
 
-    <div class="quote-container">
-        <p class="quote-text" id="quoteText"></p>
-        <p class="quote-author" id="quoteAuthor"></p>
-    </div>
-
-    <script>
-        var quotes = [
-            {
-                text: "The best way to predict the future is to create it.",
-                author: "- Peter Drucker"
-            },
-            {
-                text: "In the middle of every difficulty lies opportunity.",
-                author: "- Albert Einstein"
-            },
-            {
-                text: "Success is not final, failure is not fatal: It is the courage to continue that counts.",
-                author: "- Winston Churchill"
-            },
-            {
-                text: "The only way to do great work is to love what you do.",
-                author: "- Steve Jobs"
-            },
-            {
-                text: "Don't watch the clock; do what it does. Keep going.",
-                author: "- Sam Levenson"
-            },
-            {
-                text: "Believe you can and you're halfway there.",
-                author: "- Theodore Roosevelt"
-            },
-            {
-                text: "The future belongs to those who believe in the beauty of their dreams.",
-                author: "- Eleanor Roosevelt"
-            }
-        ];
-
-        var currentQuoteIndex = 0;
-        var quoteTextElement = document.getElementById("quoteText");
-        var quoteAuthorElement = document.getElementById("quoteAuthor");
-
-        function displayQuote(index) {
-            quoteTextElement.innerText = quotes[index].text;
-            quoteAuthorElement.innerText = quotes[index].author;
-        }
-
-        displayQuote(currentQuoteIndex);
-
-        setInterval(function() {
-            currentQuoteIndex = (currentQuoteIndex + 1) % quotes.length;
-            displayQuote(currentQuoteIndex);
-        }, 5000);
-</body>
-</html>
