@@ -1,28 +1,44 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Quote
+from .forms import QuoteForm
+
 
 
 def quote(request):
     quotes = Quote.objects.all()
-    return render(request, 'quotes/quotes.html')
+    return render(request, 'quotemodule/quoteList.html',{'quotes':quotes})
 
 
 def add_quote(request):
     if request.method == 'POST':
-        text = request.POST.get('text')
-        author = request.POST.get('author')
-        Quote.objects.create(text=text, author=author)
-        return redirect('home')
-    return render(request, 'quotemodule/add_quote.html')
+        form = QuoteForm(request.POST)
+        
+        if form.is_valid():
+            obj = form.save()
+            print(obj,"obj")
+            return redirect('/', bId = obj.id )
+    form = QuoteForm(None)
+    return render(request, 'quotemodule/addQuote.html', {'form':form})
 
 
-def quote_detail(request, quote_id):
-    quote = Quote.objects.get(id=quote_id)
-    return render(request, 'quotemodule/quote_search.html', {'quote': quote})
+
+def quote_detail(request, qId):
+    quote = Quote.objects.get(id=qId)
+    return render(request, 'quotemodule/quote.html', {'quote': quote})
 
 
-def profile(request):
-    # Assuming you have user authentication implemented
-    user = request.user
-    quotes = Quote.objects.filter(user=user)
-    return render(request, 'quotemodule/profile.html', {'user': user, 'quotes': quotes})
+def search(request):
+    if request.method == "POST":
+        string = request.POST.get('keyword').lower()
+        if string:
+            string = string.lower()
+            s_type = request.POST.get('option')
+            if s_type=="Text":
+                quotes = Quote.objects.filter(text__icontains=string)
+            elif s_type=="Title":
+                quotes = Quote.objects.filter(Tilte__icontains=string)
+            elif s_type=="Author":
+                quotes = Quote.objects.filter(author__icontains=string)
+            return render(request, 'quotemodule/quote_search.html',{'quotes':quotes})
+
+    return render(request, 'quotemodule/quote_search.html')
