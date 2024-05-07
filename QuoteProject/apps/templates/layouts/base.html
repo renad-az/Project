@@ -4,31 +4,92 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width">
       <title>
-         Quotes - {% block title %}{% endblock %}
+         Quotation Website - {% block title %}{% endblock %}
       </title>
      
-      {% block stylesheets %}{% endblock stylesheets %}
+      <style>
+         header {
+            background-color: #b2afaf;
+            color: #000000;
+            padding: 10px;
+            top: 0;
+            left: 0;
+            z-index: 1000; /* Ensure it appears above other content */
+         }
+         footer {
+            background-color: #b2afaf;
+            color: #fff;
+            text-align: center;
+            padding: 8px;
+            bottom: 0;
+            width: 100%;
+         }
+
+                  
+         header h1 {
+            margin: 0;
+         }
+
+         nav ul {
+            list-style-type: none;
+            padding: 0;
+         }
+
+         nav ul li {
+            display: inline;
+            margin-right: 20px;
+         }
+
+         nav ul li a {
+            color: #000000;
+            text-decoration: none;
+         }
+         body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #333333;
+        }
+
+        .quote-container {
+            background-color: #ffffff;
+            border-radius: 5px;
+            padding: 20px;
+            margin-top: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .quote-text {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .quote-author {
+            font-size: 14px;
+            color: #666666;
+        }
+      </style>
+      {% block stylesheets %}
+
+      {% endblock stylesheets %}
 
       <!-- here you put your stylesheets-->
       <!-- here you put your js-->
    </head>
    <body>
-   
-       <h1>Latest Quotes</h1>
-    <ul>
-        {% for quote in quotes %}
-        <li><a href="{% url 'quote_detail' quote.id %}">{{ quote.text }}</a> - {{ quote.author }}</li>
-        {% endfor %}
-    </ul>
-    <a href="{% url 'add_quote' %}">Add Quote</a>
-    <a href="{% url 'profile' %}">Profile</a>
-   
       {% include 'includes/header.html' %}
       
       {% block content %}
       {% endblock content %}
       
       {% include 'includes/footer.html' %}
+
+      {% block javascripts %}
+      {% endblock javascripts %}
    </body>
 </html>
 
