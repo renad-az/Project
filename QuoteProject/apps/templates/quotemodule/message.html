@@ -1,0 +1,21 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Add Quote {% endblock %}
+
+{% block content %}
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script >
+    Swal.fire({
+        icon: "success",
+        title: "Added",
+        showConfirmButton: false,
+        timer: 1500
+    }).then(() => {
+        window.location.href = "/"; // توجيه المستخدم إلى الصفحة الرئيسية بعد انتهاء المؤقت
+    });
+</script>
+{% endblock content %}
+
+  
+

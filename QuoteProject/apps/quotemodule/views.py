@@ -16,7 +16,9 @@ def add_quote(request):
         if form.is_valid():
             obj = form.save()
             print(obj,"obj")
-            return redirect('/', bId = obj.id )
+            from django.contrib import messages
+
+            return render(request, 'quotemodule/message.html')
     form = QuoteForm(None)
     return render(request, 'quotemodule/addQuote.html', {'form':form})
 
